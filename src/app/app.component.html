@@ -1,3 +1,26 @@
-<h1>
-  {{title}}
-</h1>
+<html>
+
+<head>
+<meta charset="utf-8">
+</head>
+
+<body>
+	<div class="menu">
+		<div class="name">Atris</div>
+		<div class="last">18:09</div>
+	</div>
+
+	<ol class="chat">
+		<div *ngFor="let talk of talk">
+			<li class="{{talk.cssClass}}">	
+				<div class="msg">
+					<p>{{talk.message}}</p>
+					<time>{{talk.dateTime | date: 'dd/MM/yyyy H:m'}}</time>
+				</div>
+			</li>	
+		</div>
+	</ol>
+	<input class="textarea" type="text" placeholder="Digite aqui!" (keyup.enter)="sendMessage($event)" [(ngModel)]="message"/>
+
+</body>
+</html>
