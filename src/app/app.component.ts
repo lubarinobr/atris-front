@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, ViewChild, Inject } from '@angular/core';
 import { TalkService } from './talk.service';
 import { TalkModel } from './talk/talk.model';
+import { DOCUMENT } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-root',
@@ -10,16 +11,19 @@ import { TalkModel } from './talk/talk.model';
 })
 export class AppComponent {
 
+  @ViewChild('scrollMe') private myScrollContainer: ElementRef;
   public talk:Array<TalkModel> = new Array();
   public message:string;
+  
 
-  constructor(private _talkService: TalkService){}
+  constructor(private _talkService: TalkService, @Inject(DOCUMENT) private document: Document){}
 
   public sendMessage(event: any) {
     this.message = event.target.value;
     this.createUserMessage();
     this._talkService.sendAsk(this.message).subscribe(res => this.setNewMessageToHistory(res));
     this.message = "";
+    this.scrollToBottom();
 
   }
 
@@ -35,6 +39,13 @@ export class AppComponent {
 
   private setNewMessageToHistory(newMessage: TalkModel) {
     this.talk.push(newMessage);
+    this.scrollToBottom();
+  }
+
+  private scrollToBottom(): void {
+    try {
+        this.document.body.scrollTop = this.myScrollContainer.nativeElement.scrollHeight;
+    } catch(err) { }                 
   }
 
 }

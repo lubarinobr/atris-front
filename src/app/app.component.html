@@ -10,6 +10,7 @@
 		<div class="last">18:09</div>
 	</div>
 
+	<div #scrollMe>
 	<ol class="chat">
 		<div *ngFor="let talk of talk">
 			<li class="{{talk.cssClass}}">	
@@ -20,7 +21,8 @@
 			</li>	
 		</div>
 	</ol>
+	</div>
 	<input class="textarea" type="text" placeholder="Digite aqui!" (keyup.enter)="sendMessage($event)" [(ngModel)]="message"/>
-
+	
 </body>
 </html>
