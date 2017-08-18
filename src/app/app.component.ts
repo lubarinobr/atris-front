@@ -16,7 +16,9 @@ export class AppComponent {
   public message:string;
   
 
-  constructor(private _talkService: TalkService, @Inject(DOCUMENT) private document: Document){}
+  constructor(private _talkService: TalkService, @Inject(DOCUMENT) private document: Document){
+    this.createAtrisHello();
+  }
 
   public sendMessage(event: any) {
     this.message = event.target.value;
@@ -25,6 +27,16 @@ export class AppComponent {
     this.message = "";
     this.scrollToBottom();
 
+  }
+
+  private createAtrisHello() {
+    let currentTalk = new TalkModel();
+    currentTalk.message = "Olá, como posso lhe ajudar ?";
+    currentTalk.name = "Atris";
+    currentTalk.dateTime = new Date();
+    currentTalk.id = 0;
+    currentTalk.cssClass = "other";
+    this.setNewMessageToHistory(currentTalk);
   }
 
   private createUserMessage() {
