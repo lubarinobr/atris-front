@@ -5,6 +5,7 @@ export class TalkModel {
     public dateTime: Date;
     public message: string;
     public cssClass: string;
+    public context: string;
 
     constructor(){}
 }

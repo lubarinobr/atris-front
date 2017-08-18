@@ -50,6 +50,7 @@ export class AppComponent {
   }
 
   private setNewMessageToHistory(newMessage: TalkModel) {
+    newMessage.message = newMessage.message.split('\n').join(' <br/> ');
     this.talk.push(newMessage);
     this.scrollToBottom();
   }

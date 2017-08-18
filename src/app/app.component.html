@@ -15,7 +15,7 @@
 		<div *ngFor="let talk of talk">
 			<li class="{{talk.cssClass}}">	
 				<div class="msg">
-					<p>{{talk.message}}</p>
+					<p [innerHTML]="talk.message"></p>
 					<time>{{talk.dateTime | date: 'dd/MM/yyyy H:m'}}</time>
 				</div>
 			</li>	
