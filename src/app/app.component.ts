@@ -23,7 +23,7 @@ export class AppComponent {
   public sendMessage(event: any) {
     this.message = event.target.value;
     this.createUserMessage();
-    this._talkService.sendAsk(this.message).subscribe(res => this.setNewMessageToHistory(res));
+    this._talkService.sendAsk(this.talk,this.message).subscribe(res => this.setNewMessageToHistory(res));
     this.message = "";
     this.scrollToBottom();
 
