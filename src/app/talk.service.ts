@@ -12,6 +12,7 @@ import { TalkHistory } from './talk/talkHistory.model';
 export class TalkService {
 
     private talkApiURL = '/api/talk';
+    private talkApiHello = '/api/hello';
 
     constructor(private _http: Http){}
 
@@ -21,6 +22,14 @@ export class TalkService {
         let options = new RequestOptions({ headers: headers });
         return this._http.post(this.talkApiURL,history, options)
             .map(function(res) {
+                return res.json();
+            });
+    }
+
+    getApresentation(): Observable<any> 
+    {
+        return this._http.post(this.talkApiHello, null)
+            .map(function(res){
                 return res.json();
             });
     }

@@ -30,13 +30,7 @@ export class AppComponent {
   }
 
   private createAtrisHello() {
-    let currentTalk = new TalkModel();
-    currentTalk.message = "Olá, como posso lhe ajudar ?";
-    currentTalk.name = "Atris";
-    currentTalk.dateTime = new Date();
-    currentTalk.id = 0;
-    currentTalk.cssClass = "other";
-    this.setNewMessageToHistory(currentTalk);
+    this._talkService.getApresentation().subscribe(res => this.setNewMessageToHistory(res));
   }
 
   private createUserMessage() {
